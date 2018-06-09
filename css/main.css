@@ -1,0 +1,11 @@
+.ball {
+    border-radius: 50%;
+    position: absolute;
+}
+
+#container {
+    background-color: #212121;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
