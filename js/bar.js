@@ -20,4 +20,9 @@ class Bar {
 
         document.getElementById('container').appendChild(this.element);
     }
+
+    show() {
+        this.element.style.top = this.y + 'px';
+	}
+
 }
