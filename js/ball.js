@@ -19,6 +19,8 @@ class Ball {
         this.element.style.top    = this.y + 'px';
         this.element.style.backgroundColor = 'red';
 
+        this.remove = false;
+
         document.getElementById('container').appendChild(this.element);
     }
 
@@ -29,6 +31,7 @@ class Ball {
         if (this.x >= width - this.raio) {
             this.speedX *= -1;
             this.x = width - this.raio;
+            this.remove = true;
         }
 
         if (this.y >= height - this.raio) {
@@ -39,6 +42,7 @@ class Ball {
         if (this.x <= 0) {
             this.speedX *= -1;
             this.x = 0;
+            this.remove = true;
         }
 
         if (this.y <= 0) {
@@ -48,5 +52,9 @@ class Ball {
 
         this.element.style.left   = this.x + 'px';
         this.element.style.top    = this.y + 'px';
+    }
+
+    reverseX() {
+        this.speedX *= -1;
     }
 }

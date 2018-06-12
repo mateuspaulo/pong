@@ -10,6 +10,8 @@ var lbar = new Bar(3,(height/2)-(heightBar/2), widthBar, heightBar,'lbar');
 var rbar = new Bar(width - widthBar - 3, (height/2)-(heightBar/2), widthBar, heightBar,'rbar');
 
 function draw() {
+    if (ball.remove) return;
+
     document.getElementById('container').style.width      = width + 'px';
     document.getElementById('container').style.height     = height + 'px';
     document.getElementById('container').style.marginLeft = (width/-2) + 'px';
@@ -17,32 +19,46 @@ function draw() {
 
     ball.update();
 
+    if (ball.remove) {
+        alert('Game Over!');
+        return;
+    }
+
     if (teclas.indexOf(83) != -1) { // Key S
-    	lbar.y += heightBar/25;
-    	if (lbar.y > height - heightBar - 3) {
-    		lbar.y = height - heightBar - 3;
-    	}
+        lbar.y += heightBar/25;
+        if (lbar.y > height - heightBar - 3) {
+            lbar.y = height - heightBar - 3;
+        }
     }
 
     if (teclas.indexOf(87) != -1) { // Key W
-    	lbar.y -= heightBar/25;
-    	if (lbar.y < 3) {
-    		lbar.y = 3;
-    	}
+        lbar.y -= heightBar/25;
+        if (lbar.y < 3) {
+            lbar.y = 3;
+        }
     }
 
     if (teclas.indexOf(40) != -1) { // Key Down
-    	rbar.y += heightBar/25;
-    	if (rbar.y > height - heightBar - 3) {
-    		rbar.y = height - heightBar - 3;
-    	}
+        rbar.y += heightBar/25;
+        if (rbar.y > height - heightBar - 3) {
+            rbar.y = height - heightBar - 3;
+        }
     }
 
     if (teclas.indexOf(38) != -1) { // Key Up
-    	rbar.y -= heightBar/25;
-    	if (rbar.y < 3) {
-    		rbar.y = 3;
-    	}
+        rbar.y -= heightBar/25;
+        if (rbar.y < 3) {
+            rbar.y = 3;
+        }
+    }
+
+    if (ball.x <= lbar.x + lbar.w && lbar.y <= ball.y && lbar.y + lbar.h >= ball.y) {
+        ball.reverseX();
+        ball.x = lbar.x + lbar.w;
+    }
+    if (ball.x + ball.raio >= rbar.x && rbar.y <= ball.y && rbar.y + rbar.h >= ball.y) {
+        ball.reverseX();
+        ball.x = rbar.x - ball.raio;
     }
 
     lbar.show();
