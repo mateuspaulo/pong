@@ -5,7 +5,7 @@ var widthBar  = 10;
 var ballWidth = 22;
 var teclas    = [];
 
-var ball = new Ball(widthBar, (height/2)-(ballWidth/2), 5, 2, ballWidth);
+var ball = new Ball(widthBar, (height/2)-(ballWidth/2), 5, 0, ballWidth);
 var lbar = new Bar(3,(height/2)-(heightBar/2), widthBar, heightBar,'lbar');
 var rbar = new Bar(width - widthBar - 3, (height/2)-(heightBar/2), widthBar, heightBar,'rbar');
 
@@ -52,11 +52,17 @@ function draw() {
         }
     }
 
-    if (ball.x <= lbar.x + lbar.w && lbar.y <= ball.y && lbar.y + lbar.h >= ball.y) {
+    if (ball.x + ball.speedX <= lbar.x + lbar.w
+        && lbar.y <= ball.y
+        && lbar.y + lbar.h >= ball.y) {
+
         ball.reverseX();
         ball.x = lbar.x + lbar.w;
     }
-    if (ball.x + ball.raio >= rbar.x && rbar.y <= ball.y && rbar.y + rbar.h >= ball.y) {
+    if (ball.x + ball.speedX + ball.raio >= rbar.x
+        && rbar.y <= ball.y
+        && rbar.y + rbar.h >= ball.y) {
+
         ball.reverseX();
         ball.x = rbar.x - ball.raio;
     }

@@ -25,6 +25,23 @@ class Ball {
     }
 
     update() {
+        if (this.speedX >= width/12) {
+            this.speedX = width/12;
+        } else if (this.speedX <= -width/12) {
+            this.speedX = -width/12;
+        } else {
+            this.speedX *= 1.0003;
+        }
+
+        if (this.speedY >= height/12) {
+            this.speedY = height/12;
+        } else if (this.speedY <= -height/12) {
+            this.speedY = -height/12;
+        } else {
+            this.speedY *= 1.0003;
+        }
+
+
         this.x += this.speedX;
         this.y += this.speedY;
 
