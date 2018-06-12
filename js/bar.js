@@ -1,15 +1,15 @@
 class Bar {
 
-    constructor(x, y, width, height) {
+    constructor(x, y, width, height, id) {
         this.x      = x;
         this.y      = y;
         this.w      = width;
         this.h      = height;
-        this.idEl  = 'bar_' + new Date().getTime();
+       // this.idEl   = 'bar_' + new Date().getTime();
 
         this.element = document.createElement('div');
 
-        this.element.setAttribute('id', this.idEl)
+        this.element.setAttribute('id', id)
         this.element.setAttribute('class', 'bar');
 
         this.element.style.width  = this.w + 'px';
@@ -20,5 +20,4 @@ class Bar {
 
         document.getElementById('container').appendChild(this.element);
     }
-
 }
