@@ -25,6 +25,7 @@ class Ball {
     }
 
     update() {
+
         if (this.speedX >= width/12) {
             this.speedX = width/12;
         } else if (this.speedX <= -width/12) {
@@ -40,7 +41,6 @@ class Ball {
         } else {
             this.speedY *= 1.0003;
         }
-
 
         this.x += this.speedX;
         this.y += this.speedY;

@@ -13,3 +13,27 @@
 .bar {
     position: absolute;
 }
+
+#verticalBar {
+	height: 98%;
+    margin-left: 50%;
+    position: absolute;
+    border: 2px #585858 dashed;
+}
+
+#leftScore {
+	margin-top: 15%;
+    margin-left: 20%;
+    position: absolute;
+    font-size: 50px;
+    font-size: 110px;
+   	color: #585858;
+}
+
+#rightScore {
+   	margin-top: 15%;
+    margin-left: 75%;
+    position: absolute;
+    font-size: 110px;
+    color: #585858;
+}
