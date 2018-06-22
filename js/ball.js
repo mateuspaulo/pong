@@ -20,6 +20,7 @@ class Ball {
         this.element.style.backgroundColor = 'red';
 
         this.remove = false;
+        this.batidas = 0;
 
         document.getElementById('container').appendChild(this.element);
     }
@@ -31,7 +32,7 @@ class Ball {
         } else if (this.speedX <= -width/12) {
             this.speedX = -width/12;
         } else {
-            this.speedX *= 1.0003;
+            this.speedX *= 1.0009;
         }
 
         if (this.speedY >= height/12) {
@@ -39,7 +40,7 @@ class Ball {
         } else if (this.speedY <= -height/12) {
             this.speedY = -height/12;
         } else {
-            this.speedY *= 1.0003;
+            this.speedY *= 1.0009;
         }
 
         this.x += this.speedX;
@@ -73,5 +74,6 @@ class Ball {
 
     reverseX() {
         this.speedX *= -1;
+        this.batidas++;
     }
 }

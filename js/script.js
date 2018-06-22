@@ -7,27 +7,38 @@ var keys        = [];
 var leftScore   = 0;
 var heightScore = 0;
 
-var ball = new Ball(widthBar, (height/2)-(ballWidth/2), 5, 2, ballWidth);
-var lbar = new Bar(3,(height/2)-(heightBar/2), widthBar, heightBar,'lbar');
-var rbar = new Bar(width - widthBar - 3, (height/2)-(heightBar/2), widthBar, heightBar,'rbar');
+var balls = [];
+balls[0]  = new Ball(widthBar, (height/2)-(ballWidth/2), 5, 2, ballWidth);
+var lbar  = new Bar(3,(height/2)-(heightBar/2), widthBar, heightBar,'lbar');
+var rbar  = new Bar(width - widthBar - 3, (height/2)-(heightBar/2), widthBar, heightBar,'rbar');
 
 function draw() {
-    if (ball.remove) return;
-
     document.getElementById('container').style.width      = width + 'px';
     document.getElementById('container').style.height     = height + 'px';
     document.getElementById('container').style.marginLeft = (width/-2) + 'px';
     document.getElementById('container').style.marginTop  = (height/-2) + 'px';
 
-    ball.update();
+    for (var i = 0; i < balls.length; i++) {
+        balls[i].update();
 
-    //Score
-    if (ball.x > 725.0) {
-        countScore("right");
-    } 
+        if (balls[i].batidas == 3) {
+            let xVariancy = 1 - (Math.floor(Math.random() *10 + 1) / 20);
+            let yVariancy = 1 - (Math.floor(Math.random() *10 + 1) / 20);
+            balls.push(new Ball(balls[i].x, balls[i].y, balls[i].speedX * xVariancy, balls[i].speedY * -yVariancy, ballWidth));
+            balls[i].batidas = 0;
+        }
 
-    if (ball.x < 2.36) {
-        countScore("left");
+        if (balls[i].remove) {
+            //Score
+            if (balls[i].x < width/2) {
+                countScore("left");
+            } else {
+                countScore("right");
+            }
+
+            balls[i].element.remove();
+            balls.splice(i, 1);
+        }
     }
 
     if (keys.indexOf(83) != -1) { // Key S
@@ -58,19 +69,21 @@ function draw() {
         }
     }
 
-    if (ball.x + ball.speedX <= lbar.x + lbar.w
-        && lbar.y <= ball.y
-        && lbar.y + lbar.h >= ball.y) {
+    for (var i = 0; i < balls.length; i++) {
+        if (balls[i].x + balls[i].speedX <= lbar.x + lbar.w
+            && lbar.y <= balls[i].y + balls[i].raio
+            && lbar.y + lbar.h >= balls[i].y) {
 
-        ball.reverseX();
-        ball.x = lbar.x + lbar.w;
-    }
-    if (ball.x + ball.speedX + ball.raio >= rbar.x
-        && rbar.y <= ball.y
-        && rbar.y + rbar.h >= ball.y) {
+            balls[i].reverseX();
+            balls[i].x = lbar.x + lbar.w;
+        }
+        if (balls[i].x + balls[i].speedX + balls[i].raio >= rbar.x
+            && rbar.y <= balls[i].y + balls[i].raio
+            && rbar.y + rbar.h >= balls[i].y) {
 
-        ball.reverseX();
-        ball.x = rbar.x - ball.raio;
+            balls[i].reverseX();
+            balls[i].x = rbar.x - balls[i].raio;
+        }
     }
 
     lbar.show();
@@ -96,12 +109,9 @@ function countScore(score) {
     if (score == "left") {
         heightScore++;
         document.getElementById("rightScore").textContent=heightScore++;
-        ball.reverseX();
     } else if(score == "right") {
         leftScore++;
         document.getElementById("leftScore").textContent=leftScore;
-        ball.reverseX();
     }
 
-    ball.update();
 }
