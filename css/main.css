@@ -37,3 +37,22 @@
     font-size: 110px;
     color: #585858;
 }
+
+.link-github {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 48px;
+}
+
+.link-github img {
+    display: block;
+    height: 48px;
+    transition: .3s all cubic-bezier(0.19, -0.65, 0.18, 1.96);
+}
+
+.link-github img:hover {
+    transition: .3s all cubic-bezier(0.19, -0.65, 0.18, 1.96);
+    transform: scale(1.1, 1.1);
+}
