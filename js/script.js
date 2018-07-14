@@ -5,7 +5,7 @@ var widthBar    = 10;
 var ballWidth   = 22;
 var keys        = [];
 var leftScore   = 0;
-var heightScore = 0;
+var rightScore  = 0;
 
 var balls = [];
 balls[0]  = new Ball(widthBar, (height/2)-(ballWidth/2), 5, 2, ballWidth);
@@ -107,11 +107,11 @@ window.onkeyup = function(e) {
 function countScore(score) {
 
     if (score == "left") {
-        heightScore++;
-        document.getElementById("rightScore").textContent=heightScore++;
+        rightScore++;
+        document.getElementById("rightScore").textContent = rightScore;
     } else if(score == "right") {
         leftScore++;
-        document.getElementById("leftScore").textContent=leftScore;
+        document.getElementById("leftScore").textContent = leftScore;
     }
 
 }
