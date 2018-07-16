@@ -7,8 +7,13 @@ var keys        = [];
 var leftScore   = 0;
 var rightScore  = 0;
 
+var iniDirX = Math.floor((Math.random() * 2) + 1) == 1 ? 1 : -1;
+var iniDirY = Math.floor((Math.random() * 2) + 1) == 1 ? 1 : -1;
+var iniSpeedX = (Math.random() * 5) + 2;
+var iniSpeedY = (Math.random() * 5) + 1;
+
 var balls = [];
-balls[0]  = new Ball(widthBar, (height/2)-(ballWidth/2), 5, 2, ballWidth);
+balls[0]  = new Ball(width/2, (height/2)-(ballWidth/2), iniDirX * iniSpeedX, iniDirY * iniSpeedY, ballWidth);
 var lbar  = new Bar(3,(height/2)-(heightBar/2), widthBar, heightBar,'lbar');
 var rbar  = new Bar(width - widthBar - 3, (height/2)-(heightBar/2), widthBar, heightBar,'rbar');
 
@@ -21,11 +26,11 @@ function draw() {
     for (var i = 0; i < balls.length; i++) {
         balls[i].update();
 
-        if (balls[i].batidas == 3) {
+        if (balls[i].duplicate) {
             let xVariancy = 1 - (Math.floor(Math.random() *10 + 1) / 20);
             let yVariancy = 1 - (Math.floor(Math.random() *10 + 1) / 20);
             balls.push(new Ball(balls[i].x, balls[i].y, balls[i].speedX * xVariancy, balls[i].speedY * -yVariancy, ballWidth));
-            balls[i].batidas = 0;
+            balls[i].duplicate = false;
         }
 
         if (balls[i].remove) {

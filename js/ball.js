@@ -19,8 +19,10 @@ class Ball {
         this.element.style.top    = this.y + 'px';
         this.element.style.backgroundColor = 'red';
 
-        this.remove = false;
-        this.batidas = 0;
+        this.remove      = false;
+        this.batidas     = 0;
+        this.duplicate   = false;
+        this.dificuldade = 8;
 
         document.getElementById('container').appendChild(this.element);
     }
@@ -75,5 +77,10 @@ class Ball {
     reverseX() {
         this.speedX *= -1;
         this.batidas++;
+        this.duplicate = Math.floor((Math.random() * this.dificuldade) + 1) == 1;
+
+        if (this.dificuldade > 5) {
+            this.dificuldade--;
+        }
     }
 }
