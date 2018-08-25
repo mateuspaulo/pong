@@ -1,11 +1,10 @@
 class Bar {
 
     constructor(x, y, width, height, id) {
-        this.x      = x;
-        this.y      = y;
-        this.w      = width;
-        this.h      = height;
-       // this.idEl   = 'bar_' + new Date().getTime();
+        this.x = x;
+        this.y = y;
+        this.w = width;
+        this.h = height;
 
         this.element = document.createElement('div');
 
@@ -20,9 +19,8 @@ class Bar {
 
         document.getElementById('container').appendChild(this.element);
     }
-
+    
     show() {
         this.element.style.top = this.y + 'px';
 	}
-
 }

@@ -1,6 +1,15 @@
 class Ball {
 
     constructor(x, y, speedX, speedY, raio) {
+
+        //Get randon color
+        this.letters = '0123456789ABCDEF';
+        this.color   = '#';
+
+        for (this.i = 0; this.i < 6; this.i++) {
+            this.color += this.letters[Math.floor(Math.random() * 16)];
+        }
+
         this.x      = x;
         this.y      = y;
         this.speedX = speedX;
@@ -17,7 +26,8 @@ class Ball {
         this.element.style.height = this.raio + 'px';
         this.element.style.left   = this.x + 'px';
         this.element.style.top    = this.y + 'px';
-        this.element.style.backgroundColor = 'red';
+        this.element.style.backgroundColor = this.color;
+        this.element.style.border = "2px solid #fff";
 
         this.remove      = false;
         this.batidas     = 0;

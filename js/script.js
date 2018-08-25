@@ -47,28 +47,28 @@ function draw() {
     }
 
     if (keys.indexOf(83) != -1) { // Key S
-        lbar.y += heightBar/25;
+        lbar.y += heightBar/10;
         if (lbar.y > height - heightBar - 3) {
             lbar.y = height - heightBar - 3;
         }
     }
 
     if (keys.indexOf(87) != -1) { // Key W
-        lbar.y -= heightBar/25;
+        lbar.y -= heightBar/10;
         if (lbar.y < 3) {
             lbar.y = 3;
         }
     }
 
     if (keys.indexOf(40) != -1) { // Key Down
-        rbar.y += heightBar/25;
+        rbar.y += heightBar/10;
         if (rbar.y > height - heightBar - 3) {
             rbar.y = height - heightBar - 3;
         }
     }
 
     if (keys.indexOf(38) != -1) { // Key Up
-        rbar.y -= heightBar/25;
+        rbar.y -= heightBar/10;
         if (rbar.y < 3) {
             rbar.y = 3;
         }
@@ -118,5 +118,4 @@ function countScore(score) {
         leftScore++;
         document.getElementById("leftScore").textContent = leftScore;
     }
-
 }
