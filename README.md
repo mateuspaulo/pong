@@ -6,4 +6,3 @@ See results on [https://mateuspaulo.github.io/pong/](https://mateuspaulo.github.
 ---
 ## More projects:
 [https://github.com/mateuspaulo](https://github.com/mateuspaulo)
-[https://github.com/riquena969](https://github.com/riquena969)
